@@ -50,7 +50,7 @@ public class SecurityController {
         }
 
         userService.saveUser(userDto);
-        return "redirect:/register?success";
+        return "redirect:/login";
     }
 
     @GetMapping("/users")

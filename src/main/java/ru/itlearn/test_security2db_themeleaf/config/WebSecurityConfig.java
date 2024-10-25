@@ -23,8 +23,9 @@ public class WebSecurityConfig {
         http
                 .csrf(csrf -> csrf.disable()) // Используем лямбда-выражение для отключения CSRF
                 .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers("/register/**", "/index", "/list", "/addStudentForm", "/saveStudent", "/showUpdateForm", "/deleteStudent").permitAll() // Разрешаем доступ к определенным URL
+                        .requestMatchers("/register/**", "/index", "/login").permitAll() // Разрешаем доступ к определенным URL
                         .requestMatchers("/users").hasRole("ADMIN") // Доступ только для пользователей с ролью ADMIN
+                        .anyRequest().authenticated() // Все остальные запросы требуют аутентификации
                 )
                 .formLogin(form -> form
                         .loginPage("/login") // Указываем страницу логина
